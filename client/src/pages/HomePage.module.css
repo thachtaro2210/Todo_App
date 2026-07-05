@@ -1,0 +1,141 @@
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--fg);
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-6);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  color: var(--muted);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.4;
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: var(--space-2);
+}
+
+.emptyText {
+  font-size: 0.875rem;
+  margin-bottom: var(--space-5);
+}
+
+.emptyBtn {
+  padding: var(--space-2) var(--space-5);
+  background: var(--control);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--on-control);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 180ms ease;
+}
+
+.emptyBtn:hover {
+  background: var(--primary-hover);
+}
+
+.loader {
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.error {
+  text-align: center;
+  padding: var(--space-6);
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .heading {
+    font-size: 1.375rem;
+  }
+}
+
+.confirmModal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.confirmText {
+  font-size: 0.9375rem;
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+.confirmActions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+  margin-top: var(--space-2);
+}
+
+.cancelBtn {
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 180ms ease;
+}
+
+.cancelBtn:hover {
+  background: var(--surface-muted);
+  color: var(--fg);
+}
+
+.deleteConfirmBtn {
+  padding: var(--space-2) var(--space-4);
+  background: var(--danger);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 180ms ease;
+}
+
+.deleteConfirmBtn:hover {
+  background: #b05050;
+}
