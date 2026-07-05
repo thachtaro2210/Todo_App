@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://admin:22102004@ac-egxihy0-shard-00-00.fh2rx8k.mongodb.net:27017,ac-egxihy0-shard-00-01.fh2rx8k.mongodb.net:27017,ac-egxihy0-shard-00-02.fh2rx8k.mongodb.net:27017/todo_app?ssl=true&replicaSet=atlas-vbh4id-shard-0&authSource=admin&retryWrites=true&w=majority
+      - CLIENT_URL=http://localhost:8080
+      - NODE_ENV=production
+    restart: always
+
+  client:
+    build: ./client
+    ports:
+      - "8080:80"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    depends_on:
+      - server
+    restart: always
