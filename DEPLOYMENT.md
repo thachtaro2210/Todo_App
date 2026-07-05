@@ -10,48 +10,53 @@ Tài liệu này hướng dẫn chi tiết cách deploy toàn bộ ứng dụng 
 
 ---
 
-## 2. Triển khai Backend (Node.js API)
+## 2. Triển khai cả Client & Serverless Backend lên Vercel (Khuyên dùng - Nhanh nhất)
 
-Bạn có thể dễ dàng triển khai Backend lên **Render** hoặc **Railway**. Dưới đây là hướng dẫn cho Render:
-
-1. Đăng ký/Đăng nhập tài khoản tại [Render](https://render.com/).
-2. Chọn **New** -> **Web Service**.
-3. Kết nối với tài khoản GitHub của bạn và chọn kho lưu trữ chứa dự án `Todo_App`.
-4. Cấu hình thông tin dịch vụ:
-   - **Name:** `todo-app-backend` (hoặc tên tùy chọn).
-   - **Region:** Chọn vùng gần nhất (ví dụ: `Singapore` để có tốc độ tốt nhất về Việt Nam).
-   - **Branch:** `main` (hoặc nhánh bạn muốn deploy).
-   - **Root Directory:** `server` (Rất quan trọng, để Render nhận diện thư mục backend).
-   - **Runtime:** `Node`.
-   - **Build Command:** `npm install`.
-   - **Start Command:** `npm start`.
-5. Cấu hình biến môi trường (Environment Variables) trong phần **Advanced**:
-   - `PORT`: `5000` (hoặc Render sẽ tự động gán cổng).
-   - `NODE_ENV`: `production`.
-   - `MONGO_URI`: `mongodb+srv://admin:22102004@cluster0.fh2rx8k.mongodb.net/todo_app?retryWrites=true&w=majority` (Thay bằng database production của bạn).
-   - `CLIENT_URL`: Điền URL của Frontend sau khi deploy thành công (ví dụ: `https://todo-app-frontend.vercel.app`).
-6. Nhấn **Deploy Web Service** và chờ Render khởi chạy. Copy lại URL API do Render cung cấp (ví dụ: `https://todo-app-backend.onrender.com`).
-
----
-
-## 3. Triển khai Frontend (React Vite)
-
-Khuyến khích triển khai trên **Vercel** vì hỗ trợ Vite rất tốt và tốc độ tải trang cực nhanh.
+Đây là phương thức tối ưu nhất giúp bạn deploy toàn bộ ứng dụng (cả Giao diện React và API Server) lên cùng một tên miền duy nhất trên **Vercel** hoàn toàn miễn phí, không cần thuê server riêng.
 
 1. Đăng ký/Đăng nhập tài khoản tại [Vercel](https://vercel.com/).
 2. Chọn **Add New** -> **Project**.
 3. Chọn kho lưu trữ GitHub chứa dự án `Todo_App`.
 4. Cấu hình thông tin dự án:
-   - **Framework Preset:** `Vite` (Vercel tự động nhận diện).
-   - **Root Directory:** `client` (Rất quan trọng, để Vercel build đúng mã nguồn frontend).
-   - **Build and Output Settings:** Giữ mặc định (`npm run build` và thư mục `dist`).
-5. Thêm biến môi trường (Environment Variables):
-   - Tên biến: `VITE_API_URL`.
-   - Giá trị: URL của Backend Render đã copy ở bước trước + `/api` (ví dụ: `https://todo-app-backend.onrender.com/api`).
-6. Nhấn **Deploy**.
-7. Sau khi quá trình build hoàn tất, Vercel sẽ cung cấp cho bạn một tên miền miễn phí dạng `https://<ten-du-an>.vercel.app`.
+   - **Root Directory:** Giữ nguyên mặc định là `.` (thư mục gốc chứa file `vercel.json`).
+   - **Framework Preset:** Chọn `Other` hoặc để Vercel tự nhận diện.
+5. Thêm biến môi trường (Environment Variables) trong mục **Environment Variables**:
+   - Tên biến: `MONGO_URI`
+   - Giá trị: Chuỗi kết nối MongoDB Atlas của bạn (Ví dụ: `mongodb+srv://admin:<password>@cluster0.fh2rx8k.mongodb.net/todo_app?retryWrites=true&w=majority`).
+6. Nhấn **Deploy** và chờ quá trình build hoàn tất. Vercel sẽ cấp một tên miền miễn phí dạng `https://<ten-du-an>.vercel.app`.
 
-*Lưu ý quay lại phần cấu hình Render Backend cập nhật giá trị `CLIENT_URL` thành tên miền Vercel này để cho phép CORS hoạt động bình thường.*
+---
+
+## 3. Cách thay thế: Triển khai riêng biệt (Server trên Render, Client trên Vercel)
+
+Nếu bạn muốn deploy theo mô hình truyền thống (chạy một server Express Node.js riêng biệt):
+
+### Bước 3.1: Triển khai Backend (Node.js API) lên Render
+1. Truy cập [Render](https://render.com/) và tạo một **Web Service** mới.
+2. Liên kết với kho lưu trữ GitHub `Todo_App`.
+3. Cấu hình dịch vụ:
+   - **Name:** `todo-app-backend`
+   - **Root Directory:** `server` (Để Render nhận diện thư mục server).
+   - **Runtime:** `Node`.
+   - **Build Command:** `npm install`.
+   - **Start Command:** `npm start`.
+4. Cấu hình biến môi trường trong phần **Advanced**:
+   - `PORT`: `5000`
+   - `NODE_ENV`: `production`
+   - `MONGO_URI`: Điền chuỗi kết nối MongoDB Atlas của bạn.
+   - `CLIENT_URL`: Điền URL của Frontend sau khi deploy thành công (ở bước sau).
+5. Nhấn **Deploy Web Service** và copy URL API (ví dụ: `https://todo-app-backend.onrender.com`).
+
+### Bước 3.2: Triển khai Frontend (React Vite) lên Vercel
+1. Đăng nhập [Vercel](https://vercel.com/) -> **Add New** -> **Project**.
+2. Chọn repo `Todo_App` và thiết lập:
+   - **Root Directory:** `client` (Rất quan trọng).
+   - **Framework Preset:** `Vite`.
+3. Thêm biến môi trường:
+   - Tên biến: `VITE_API_URL`
+   - Giá trị: URL của Backend Render đã copy + `/api` (ví dụ: `https://todo-app-backend.onrender.com/api`).
+4. Nhấn **Deploy**.
+5. *Quay lại Render Backend cập nhật biến `CLIENT_URL` thành tên miền Vercel để cho phép CORS hoạt động.*
 
 ---
 

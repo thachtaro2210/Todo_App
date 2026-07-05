@@ -171,4 +171,5 @@ Truy cập ứng dụng tại địa chỉ: **http://localhost:5173**
   ```
 
 ### 5. Triển khai Online (Deployment)
-- Vui lòng xem chi tiết hướng dẫn từng bước đưa ứng dụng lên các nền tảng miễn phí tại: [DEPLOYMENT.md](file:///e:/Test/Todo_App/DEPLOYMENT.md).
+- **Triển khai trọn gói lên Vercel:** Giao diện React (Vite) và API Server (Node.js Express) đã được cấu hình tối ưu chạy tích hợp trên cùng một tên miền duy nhất của Vercel (sử dụng Serverless Functions). 
+- Xem chi tiết hướng dẫn cấu hình môi trường và triển khai từng bước tại: [DEPLOYMENT.md](file:///e:/Test/Todo_App/DEPLOYMENT.md).
