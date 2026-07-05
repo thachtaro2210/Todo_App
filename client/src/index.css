@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Global Styles + Design Tokens — Todo_App (Gentle Sage)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+/* ---------- Light Mode (Default) ---------- */
+:root {
+  --bg: #f5f6f3;
+  --surface: #fbfcfa;
+  --surface-muted: #eceee9;
+  --surface-raised: #fbfcfa;
+
+  --fg: #1e2420;
+  --muted: #6b7269;
+  --subtle: #97a09a;
+  --border: #d8dcd5;
+  --border-strong: #bec4b8;
+
+  --primary: #5b8a72;
+  --primary-hover: #487461;
+  --primary-soft: #def0e6;
+  --control: #5b8a72;
+  --on-control: #fbfcfa;
+
+  --accent: #d4915e;
+  --accent-soft: #f9eadb;
+
+  --success: #5b8a72;
+  --success-soft: #def0e6;
+  --warning: #d4a03b;
+  --warning-soft: #fbf0d1;
+  --danger: #c45d5d;
+  --danger-soft: #f8e0e0;
+  --info: #6b7269;
+  --info-soft: #eceee9;
+
+  --font-display: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-sm: 0 1px 2px rgba(30, 36, 32, 0.05);
+  --shadow-md: 0 12px 32px rgba(30, 36, 32, 0.07);
+  --shadow-lg: 0 20px 48px rgba(30, 36, 32, 0.10);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --header-bg: rgba(245, 246, 243, 0.80);
+}
+
+/* ---------- Dark Mode ---------- */
+.dark-mode {
+  --bg: #141916;
+  --surface: #1c211e;
+  --surface-muted: #252b27;
+  --surface-raised: #1c211e;
+
+  --fg: #e8ebe6;
+  --muted: #97a09a;
+  --subtle: #6b7269;
+  --border: #2f352f;
+  --border-strong: #3f4640;
+
+  --primary: #6b9f84;
+  --primary-hover: #8dbba2;
+  --primary-soft: #1d2b23;
+  --control: #6b9f84;
+  --on-control: #e8ebe6;
+
+  --accent: #d4915e;
+  --accent-soft: #2b2218;
+
+  --success: #6b9f84;
+  --success-soft: #1d2b23;
+  --warning: #d4a03b;
+  --warning-soft: #2b2518;
+  --danger: #c45d5d;
+  --danger-soft: #2b1818;
+  --info: #97a09a;
+  --info-soft: #1f2420;
+
+  --header-bg: rgba(20, 25, 22, 0.80);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 300ms ease, color 300ms ease;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(12px); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
