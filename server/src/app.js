@@ -3,6 +3,10 @@ import cors from 'cors';
 import compression from 'compression';
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
 import routes from './routes/index.js';
+import { connectDB } from './config/db.js';
+
+// Connect to Database
+connectDB();
 
 const app = express();
 
